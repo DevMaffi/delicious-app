@@ -1,5 +1,7 @@
+import { Popular } from '../components'
+
 function App() {
-  return <h2>Delicious App</h2>
+  return <Popular />
 }
 
 export default App
