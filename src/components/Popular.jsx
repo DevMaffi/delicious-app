@@ -1,5 +1,10 @@
+import { Splide, SplideSlide } from '@splidejs/react-splide'
+
 import * as recipesService from '../services/recipesService'
 import useHttp from '../hooks/useHttp'
+
+import '@splidejs/react-splide/css'
+import './popular.sass'
 
 function Popular() {
   const { data: popularRecipes } = useHttp({
@@ -10,14 +15,28 @@ function Popular() {
   })
 
   return (
-    <>
-      <h2>Popular</h2>
-      {popularRecipes.map(recipe => (
-        <div key={recipe.id}>
-          <h4>{recipe.title}</h4>
-        </div>
-      ))}
-    </>
+    <div className="popular">
+      <h2>Popular picks</h2>
+      <Splide
+        options={{
+          perPage: 3,
+          arrows: false,
+          pagination: false,
+          drag: 'free',
+          gap: '3.5rem',
+        }}
+      >
+        {popularRecipes.map(recipe => (
+          <SplideSlide key={recipe.id}>
+            <div className="popular__card">
+              <p>{recipe.title}</p>
+              <img src={recipe.image} alt={recipe.title} />
+              <div className="gradient"></div>
+            </div>
+          </SplideSlide>
+        ))}
+      </Splide>
+    </div>
   )
 }
 
