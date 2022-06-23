@@ -1,22 +1,13 @@
-import { useState, useEffect } from 'react'
-
 import * as recipesService from '../services/recipesService'
+import useHttp from '../hooks/useHttp'
 
 function Popular() {
-  const [popularRecipes, setRecipes] = useState([])
-
-  useEffect(() => {
-    const getRecipes = async () => {
-      try {
-        const { data } = await recipesService.getRecipes(9)
-        setRecipes(data.recipes)
-      } catch (error) {
-        console.error(error.message)
-      }
-    }
-
-    getRecipes()
-  }, [])
+  const { data: popularRecipes } = useHttp({
+    defaultValue: [],
+    httpCallback: () => recipesService.getRecipes(9),
+    onError: error => console.error(error.message),
+    propName: 'recipes',
+  })
 
   return (
     <>
