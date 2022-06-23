@@ -1,6 +1,6 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 
-import * as recipesService from '../services/recipesService'
+import * as storageService from '../services/storageService'
 import useHttp from '../hooks/useHttp'
 
 import '@splidejs/react-splide/css'
@@ -9,9 +9,8 @@ import './popular.sass'
 function Popular() {
   const { data: popularRecipes } = useHttp({
     defaultValue: [],
-    httpCallback: () => recipesService.getRecipes(9),
+    httpCallback: () => storageService.getRecipes('popular', 9),
     onError: error => console.error(error.message),
-    propName: 'recipes',
   })
 
   return (

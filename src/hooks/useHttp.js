@@ -1,25 +1,19 @@
 import { useState, useEffect } from 'react'
 
-function useHttp({
-  defaultValue,
-  httpCallback,
-  onError,
-  propName = null,
-  deps = [],
-}) {
+function useHttp({ defaultValue, httpCallback, onError, deps = [] }) {
   const [data, setData] = useState(defaultValue)
 
   useEffect(() => {
-    const getRecipes = async () => {
+    const getData = async () => {
       try {
         const res = await httpCallback()
-        setData(propName ? res.data[propName] : res.data)
+        setData(res)
       } catch (error) {
         onError(error)
       }
     }
 
-    getRecipes()
+    getData()
   }, deps)
 
   return { data, setData }
