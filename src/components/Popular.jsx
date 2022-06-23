@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react'
 
+import * as recipesService from '../services/recipesService'
+
 function Popular() {
   const [popularRecipes, setRecipes] = useState([])
 
   useEffect(() => {
     const getRecipes = async () => {
-      const res = await fetch(
-        `${process.env.REACT_APP_API_ENDPOINT}/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`
-      )
-      const { recipes } = await res.json()
-
-      setRecipes(recipes)
+      try {
+        const { data } = await recipesService.getRecipes(9)
+        setRecipes(data.recipes)
+      } catch (error) {
+        console.error(error.message)
+      }
     }
 
     getRecipes()
