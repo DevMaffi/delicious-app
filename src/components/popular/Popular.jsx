@@ -1,7 +1,7 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 
-import * as storageService from '../services/storageService'
-import useHttp from '../hooks/useHttp'
+import * as storageService from '../../services/storageService'
+import useHttp from '../../hooks/useHttp'
 
 import '@splidejs/react-splide/css'
 import './popular.sass'
