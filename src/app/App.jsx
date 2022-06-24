@@ -1,7 +1,12 @@
-import { Popular } from '../components'
+import { Popular, Veggies } from '../components'
 
 function App() {
-  return <Popular />
+  return (
+    <>
+      <Popular />
+      <Veggies />
+    </>
+  )
 }
 
 export default App

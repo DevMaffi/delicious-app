@@ -5,12 +5,12 @@ import * as recipesService from '../services/recipesService'
 import useHttp from '../hooks/useHttp'
 
 import '@splidejs/react-splide/css'
-import '../styles/components/popular.sass'
 
-function Popular() {
-  const [fetchData, popularRecipes] = useHttp({
+function Veggies() {
+  const [fetchData, veggies] = useHttp({
     defaultValue: [],
-    httpCallback: () => recipesService.getRecipes('popular', 9),
+    httpCallback: () =>
+      recipesService.getRecipesByTags('veggies', 9, ['vegetarian']),
   })
 
   useEffect(() => {
@@ -18,18 +18,18 @@ function Popular() {
   }, [])
 
   return (
-    <div className="popular section">
-      <h2>Popular picks</h2>
+    <div className="veggies section">
+      <h2>Our Vegetarian Picks</h2>
       <Splide
         options={{
-          perPage: 3,
+          perPage: 4,
           arrows: false,
           pagination: false,
           drag: 'free',
-          gap: '3.5rem',
+          gap: '2.5rem',
         }}
       >
-        {popularRecipes.map(recipe => (
+        {veggies.map(recipe => (
           <SplideSlide key={recipe.id}>
             <div className="popular__card">
               <p>{recipe.title}</p>
@@ -43,4 +43,4 @@ function Popular() {
   )
 }
 
-export default Popular
+export default Veggies

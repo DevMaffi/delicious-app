@@ -1,15 +1,13 @@
-import * as recipesService from './recipesService'
-
-export async function getRecipes(key, amount) {
+export async function getMemorizedData(key, httpCallback, propName) {
   if (localStorage.getItem(key)) return JSON.parse(localStorage.getItem(key))
 
   try {
-    const {
-      data: { recipes },
-    } = await recipesService.getRecipes(amount)
+    const { data } = await httpCallback()
+    const res = propName ? data[propName] : data
 
-    localStorage.setItem(key, JSON.stringify(recipes))
-    return recipes
+    localStorage.setItem(key, JSON.stringify(res))
+
+    return res
   } catch (error) {
     return Promise.reject(error)
   }
