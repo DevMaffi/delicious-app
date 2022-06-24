@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 
+import { Card } from './common'
+
 import * as recipesService from '../services/recipesService'
 import useHttp from '../hooks/useHttp'
 
 import '@splidejs/react-splide/css'
-import '../styles/modules/popular.sass'
 
 function Popular() {
   const [fetchData, popularRecipes] = useHttp({
@@ -31,11 +32,7 @@ function Popular() {
       >
         {popularRecipes.map(recipe => (
           <SplideSlide key={recipe.id}>
-            <div className="popular__card">
-              <p>{recipe.title}</p>
-              <img src={recipe.image} alt={recipe.title} />
-              <div className="gradient"></div>
-            </div>
+            <Card title={recipe.title} image={recipe.image} />
           </SplideSlide>
         ))}
       </Splide>
