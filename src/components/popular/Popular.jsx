@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 
 import * as storageService from '../../services/storageService'
@@ -7,11 +8,14 @@ import '@splidejs/react-splide/css'
 import './popular.sass'
 
 function Popular() {
-  const { data: popularRecipes } = useHttp({
+  const [fetchData, popularRecipes] = useHttp({
     defaultValue: [],
     httpCallback: () => storageService.getRecipes('popular', 9),
-    onError: error => console.error(error.message),
   })
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <div className="popular">

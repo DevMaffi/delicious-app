@@ -1,22 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
-function useHttp({ defaultValue, httpCallback, onError, deps = [] }) {
+function useHttp({ defaultValue, httpCallback }) {
   const [data, setData] = useState(defaultValue)
+  const [error, setError] = useState(null)
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await httpCallback()
-        setData(res)
-      } catch (error) {
-        onError(error)
-      }
+  const fetchData = async () => {
+    try {
+      const res = await httpCallback()
+      setData(res)
+    } catch (error) {
+      setError(error)
     }
+  }
 
-    getData()
-  }, deps)
-
-  return { data, setData }
+  return [fetchData, data, setData, error]
 }
 
 export default useHttp
