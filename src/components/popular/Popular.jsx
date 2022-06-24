@@ -5,7 +5,7 @@ import * as storageService from '../../services/storageService'
 import useHttp from '../../hooks/useHttp'
 
 import '@splidejs/react-splide/css'
-import './popular.sass'
+import '../../styles/components/popular.sass'
 
 function Popular() {
   const [fetchData, popularRecipes] = useHttp({
