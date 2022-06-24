@@ -19,7 +19,7 @@ function Popular() {
 
   return (
     <div className="popular section">
-      <h2>Popular picks</h2>
+      <h2>Popular Picks</h2>
       <Splide
         options={{
           perPage: 3,
