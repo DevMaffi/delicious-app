@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 
-import * as storageService from '../../services/storageService'
-import useHttp from '../../hooks/useHttp'
+import * as storageService from '../services/storageService'
+import useHttp from '../hooks/useHttp'
 
 import '@splidejs/react-splide/css'
-import '../../styles/components/popular.sass'
+import '../styles/components/popular.sass'
 
 function Popular() {
   const [fetchData, popularRecipes] = useHttp({
