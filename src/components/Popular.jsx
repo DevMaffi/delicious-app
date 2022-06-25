@@ -16,7 +16,7 @@ function Popular() {
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [fetchData])
 
   return (
     <div className="popular section">

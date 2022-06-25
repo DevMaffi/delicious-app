@@ -17,7 +17,7 @@ function Veggies() {
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [fetchData])
 
   return (
     <div className="veggies section">
