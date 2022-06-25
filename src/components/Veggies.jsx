@@ -21,7 +21,7 @@ function Veggies() {
 
   return (
     <div className="veggies section">
-      <h2>Our Vegetarian Picks</h2>
+      <h3>Our Vegetarian Picks</h3>
       <Splide
         options={{
           perPage: 4,
