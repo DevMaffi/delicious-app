@@ -1,6 +1,8 @@
 import { useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 
+import { Card } from '../components/common'
+
 import * as recipesService from '../services/recipesService'
 import useHttp from '../hooks/useHttp'
 
@@ -25,10 +27,7 @@ function Cuisine() {
   return (
     <div className="cuisine section">
       {cuisine.map(recipe => (
-        <div key={recipe.id} className="cuisine__card">
-          <img src={recipe.image} alt={recipe.title} />
-          <h4>{recipe.title}</h4>
-        </div>
+        <Card key={recipe.id} image={recipe.image} title={recipe.title} />
       ))}
     </div>
   )
