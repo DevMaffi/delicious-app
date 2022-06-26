@@ -35,3 +35,11 @@ export function getRecipesByCuisine(cuisine) {
     'results'
   )
 }
+
+export async function getRecipesByQuery(query) {
+  const { data } = await http.get(
+    `/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${query}`
+  )
+
+  return data.results
+}
