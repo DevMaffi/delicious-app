@@ -1,2 +1,2 @@
 export { default as NavIconButton } from './NavIconButton'
-export { default as Card } from './Card'
+export { default as SlideCard } from './SlideCard'

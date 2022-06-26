@@ -1,7 +1,7 @@
 import { useEffect, useCallback } from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 
-import { Card } from './common'
+import { SlideCard } from './common'
 
 import * as recipesService from '../services/recipesService'
 import useHttp from '../hooks/useHttp'
@@ -36,7 +36,7 @@ function Popular() {
       >
         {popularRecipes.map(recipe => (
           <SplideSlide key={recipe.id}>
-            <Card title={recipe.title} image={recipe.image} />
+            <SlideCard title={recipe.title} image={recipe.image} />
           </SplideSlide>
         ))}
       </Splide>
