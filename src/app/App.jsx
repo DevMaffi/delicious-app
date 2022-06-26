@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import { Filters } from '../components'
-import { Home, Cuisine } from '../pages'
+import { Home, Searched, Cuisine } from '../pages'
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
       <Filters />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/searched/:query" element={<Searched />} />
         <Route path="/cuisine/:type" element={<Cuisine />} />
       </Routes>
     </Router>
