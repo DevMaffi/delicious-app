@@ -9,24 +9,24 @@ function Categories() {
   return (
     <nav className="categories__list">
       <NavIconButton
-        to="/cuisine/italian"
+        to="/cuisine/Italian"
         iconComponent={FaPizzaSlice}
         label="Italian"
       />
       <NavIconButton
-        to="/cuisine/american"
+        to="/cuisine/American"
         iconComponent={FaHamburger}
         label="American"
       />
       <NavIconButton
-        to="/cuisine/thai"
+        to="/cuisine/Vietnamese"
         iconComponent={GiNoodles}
-        label="Thai"
+        label="Vietnamese"
       />
       <NavIconButton
-        to="/cuisine/japanese"
+        to="/cuisine/Korean"
         iconComponent={GiChopsticks}
-        label="Japanese"
+        label="Korean"
       />
     </nav>
   )

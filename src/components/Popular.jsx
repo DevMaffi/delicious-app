@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 
 import { Card } from './common'
@@ -9,9 +9,13 @@ import useHttp from '../hooks/useHttp'
 import '@splidejs/react-splide/css'
 
 function Popular() {
+  const httpCallback = useCallback(() => {
+    return recipesService.getRecipes('popular', 9)
+  }, [])
+
   const [fetchData, popularRecipes] = useHttp({
     defaultValue: [],
-    httpCallback: () => recipesService.getRecipes('popular', 9),
+    httpCallback,
   })
 
   useEffect(() => {

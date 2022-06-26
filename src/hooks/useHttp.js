@@ -4,7 +4,6 @@ function useHttp({ defaultValue, httpCallback }) {
   const [data, setData] = useState(defaultValue)
   const [error, setError] = useState(null)
 
-  /* eslint-disable react-hooks/exhaustive-deps */
   const fetchData = useCallback(async () => {
     try {
       const res = await httpCallback()
@@ -12,7 +11,7 @@ function useHttp({ defaultValue, httpCallback }) {
     } catch (error) {
       setError(error)
     }
-  }, [])
+  }, [httpCallback])
 
   return [fetchData, data, setData, error]
 }

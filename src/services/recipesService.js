@@ -24,3 +24,14 @@ export function getRecipesByTags(key, limit, tags) {
     'recipes'
   )
 }
+
+export function getRecipesByCuisine(cuisine) {
+  return storageService.getMemorizedData(
+    cuisine,
+    () =>
+      http.get(
+        `/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${cuisine}`
+      ),
+    'results'
+  )
+}
