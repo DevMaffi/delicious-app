@@ -36,7 +36,11 @@ function Veggies() {
       >
         {veggies.map(recipe => (
           <SplideSlide key={recipe.id}>
-            <SlideCard title={recipe.title} image={recipe.image} />
+            <SlideCard
+              to={`/recipe/${recipe.id}`}
+              title={recipe.title}
+              image={recipe.image}
+            />
           </SplideSlide>
         ))}
       </Splide>

@@ -29,6 +29,7 @@ function Searched() {
       {searchedRecipes.map(recipe => (
         <Card
           key={recipe.id}
+          to={`/recipe/${recipe.id}`}
           classes="searched__card"
           image={recipe.image}
           title={recipe.title}

@@ -27,7 +27,12 @@ function Cuisine() {
   return (
     <div className="cuisine section">
       {cuisine.map(recipe => (
-        <Card key={recipe.id} image={recipe.image} title={recipe.title} />
+        <Card
+          key={recipe.id}
+          to={`/recipe/${recipe.id}`}
+          image={recipe.image}
+          title={recipe.title}
+        />
       ))}
     </div>
   )
