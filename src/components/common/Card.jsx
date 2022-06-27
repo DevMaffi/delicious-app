@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom'
 
 import '../../styles/modules/card.sass'
 
-function Card({ image, title, to, classes = '' }) {
+function Card({ image, title, to }) {
   return (
-    <div className={`card ${classes}`.trim()}>
+    <div className="card">
       <Link to={to}>
         <img src={image} alt={title} />
         <h4>{title}</h4>

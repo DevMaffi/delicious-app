@@ -3,17 +3,17 @@ import { useParams } from 'react-router-dom'
 
 import { Card } from '../components/common'
 
-import * as recipesService from '../services/recipesService'
 import useHttp from '../hooks/useHttp'
 
 import '../styles/modules/cuisine.sass'
 
-function Cuisine() {
+function Cuisine({ paramsRequest, queryParam }) {
   const params = useParams()
 
+  /* eslint-disable react-hooks/exhaustive-deps*/
   const httpCallback = useCallback(() => {
-    return recipesService.getRecipesByCuisine(params.type)
-  }, [params.type])
+    return paramsRequest(params[queryParam])
+  }, [params[queryParam]])
 
   const [fetchData, cuisine] = useHttp({
     defaultValue: [],
