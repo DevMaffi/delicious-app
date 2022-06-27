@@ -58,3 +58,9 @@ export async function getRecipesByQuery(query) {
 
   return data.results
 }
+
+export async function getDetails(id) {
+  const { data } = await http.get(`/${id}/information`, { params })
+
+  return data
+}
