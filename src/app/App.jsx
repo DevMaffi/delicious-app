@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-import { Filters } from '../components'
+import { NavBar, Filters } from '../components'
 import { Home, Cuisine, Recipe } from '../pages'
 
 import * as recipesService from '../services/recipesService'
@@ -8,6 +8,7 @@ import * as recipesService from '../services/recipesService'
 function App() {
   return (
     <Router>
+      <NavBar />
       <Filters />
       <Routes>
         <Route path="/" element={<Home />} />
