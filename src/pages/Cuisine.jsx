@@ -1,5 +1,6 @@
 import { useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 import { RecipesGrid } from '../components/common'
 
@@ -23,9 +24,15 @@ function Cuisine({ paramsRequest, queryParam }) {
   }, [fetchData])
 
   return (
-    <div className="section">
+    <motion.div
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="section"
+    >
       <RecipesGrid recipes={cuisine} />
-    </div>
+    </motion.div>
   )
 }
 

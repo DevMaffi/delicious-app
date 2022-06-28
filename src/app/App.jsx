@@ -1,37 +1,14 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import { NavBar, Filters } from '../components'
-import { Home, Cuisine, Recipe } from '../pages'
-
-import * as recipesService from '../services/recipesService'
+import Pages from '../pages'
 
 function App() {
   return (
     <Router>
       <NavBar />
       <Filters />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/searched/:query"
-          element={
-            <Cuisine
-              paramsRequest={recipesService.getRecipesByQuery}
-              queryParam="query"
-            />
-          }
-        />
-        <Route
-          path="/cuisine/:type"
-          element={
-            <Cuisine
-              paramsRequest={recipesService.getRecipesByCuisine}
-              queryParam="type"
-            />
-          }
-        />
-        <Route path="/recipe/:id" element={<Recipe />} />
-      </Routes>
+      <Pages />
     </Router>
   )
 }
