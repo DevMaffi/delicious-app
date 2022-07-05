@@ -1,33 +1,22 @@
-import { useEffect, useCallback } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 import { Button } from '../components/common'
 
-import * as recipesService from '../services/recipesService'
-import useHttp from '../hooks/useHttp'
-import { recipeActions } from '../store'
+import { fetchDetails, changeTab } from '../store/slices/recipeSlice'
 
 import '../styles/modules/recipe.sass'
 
 function Recipe() {
-  const { activeTab } = useSelector(state => state.recipe)
+  const { activeTab, details } = useSelector(state => state.recipe)
   const dispatch = useDispatch()
 
   const params = useParams()
 
-  const httpCallback = useCallback(() => {
-    return recipesService.getDetails(params.id)
-  }, [params.id])
-
-  const [fetchData, details] = useHttp({
-    defaultValue: {},
-    httpCallback,
-  })
-
   useEffect(() => {
-    fetchData()
-  }, [fetchData])
+    dispatch(fetchDetails(params.id))
+  }, [dispatch, params.id])
 
   return (
     <div className="recipe">
@@ -39,7 +28,7 @@ function Recipe() {
         <Button
           active={activeTab === 'instructions'}
           onClick={() => {
-            dispatch(recipeActions.changeTab('instructions'))
+            dispatch(changeTab('instructions'))
           }}
         >
           Instructions
@@ -47,7 +36,7 @@ function Recipe() {
         <Button
           active={activeTab === 'ingredients'}
           onClick={() => {
-            dispatch(recipeActions.changeTab('ingredients'))
+            dispatch(changeTab('ingredients'))
           }}
         >
           Ingredients
