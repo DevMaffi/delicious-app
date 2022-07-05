@@ -9,7 +9,7 @@ import useHttp from '../hooks/useHttp'
 function Cuisine({ paramsRequest, queryParam }) {
   const params = useParams()
 
-  /* eslint-disable react-hooks/exhaustive-deps*/
+  /* eslint-disable react-hooks/exhaustive-deps */
   const httpCallback = useCallback(() => {
     return paramsRequest(params[queryParam])
   }, [params[queryParam]])
