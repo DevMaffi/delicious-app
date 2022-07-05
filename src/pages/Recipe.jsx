@@ -1,14 +1,19 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useEffect, useCallback } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 import { Button } from '../components/common'
 
 import * as recipesService from '../services/recipesService'
 import useHttp from '../hooks/useHttp'
+import { recipeActions } from '../store'
 
 import '../styles/modules/recipe.sass'
 
 function Recipe() {
+  const { activeTab } = useSelector(state => state.recipe)
+  const dispatch = useDispatch()
+
   const params = useParams()
 
   const httpCallback = useCallback(() => {
@@ -19,8 +24,6 @@ function Recipe() {
     defaultValue: {},
     httpCallback,
   })
-
-  const [activeTab, setActiveTab] = useState('instructions')
 
   useEffect(() => {
     fetchData()
@@ -35,13 +38,17 @@ function Recipe() {
       <div className="recipe__info">
         <Button
           active={activeTab === 'instructions'}
-          onClick={() => setActiveTab('instructions')}
+          onClick={() => {
+            dispatch(recipeActions.changeTab('instructions'))
+          }}
         >
           Instructions
         </Button>
         <Button
           active={activeTab === 'ingredients'}
-          onClick={() => setActiveTab('ingredients')}
+          onClick={() => {
+            dispatch(recipeActions.changeTab('ingredients'))
+          }}
         >
           Ingredients
         </Button>
@@ -53,7 +60,7 @@ function Recipe() {
         )}
         {activeTab === 'ingredients' && (
           <ul>
-            {details.extendedIngredients.map(ingredient => (
+            {details.extendedIngredients?.map(ingredient => (
               <li key={ingredient.id}>{ingredient.original}</li>
             ))}
           </ul>
